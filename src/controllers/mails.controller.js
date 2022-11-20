@@ -15,7 +15,7 @@ const sendmail = async (req, res) => {
     }
 
     const mail = 'mantenciondecondominio@gmail.com';
-    const token = process.env.PW;
+    const token = process.env.EMAIL_PW;
   
     if (!token) {
       return res.status(400).send({
