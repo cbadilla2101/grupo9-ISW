@@ -1,18 +1,18 @@
 # Grupo 9 - Mantención de Instalaciones - Ing. de Software
 
-## Instalación
+## Inicialización del Backend
 
-### Clonar repositorio
+### Acceso al Servidor por SSH
 ```
-git clone https://github.com/cbadilla2101/grupo9-ISW.git
-```
-
-### Instalar paquetes
-```
-yarn install
+ssh usuario9@146.83.198.35 -p 1238
 ```
 
-## Ejecución
+### Autenticar usuario root
+```
+sudo su
+```
+
+### Ejecución del Backend
 ```
 yarn run start
 ```
