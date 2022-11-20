@@ -23,14 +23,12 @@ const mantencionSchema = new mongoose.Schema({
   },
   imagen_antes: {
     type: String,
-    required: true,
     trim: true,
     minLenght: 1,
     maxLenght: 250
   },
   imagen_despues: {
     type: String,
-    required: true,
     trim: true,
     minLenght: 1,
     maxLenght: 250
