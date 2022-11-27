@@ -1,6 +1,6 @@
 {
-  "name": "grupo9_isw",
-  "version": "1.0.0",
+  "name": "grupo9_isw_backend",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
