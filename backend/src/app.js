@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 
 const usuariosRoutes = require('./routes/usuarios.routes');
 const mantencionesRoutes = require('./routes/mantenciones.routes');
+const correosRoutes = require('./routes/correos.routes');
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.options('*', cors());
 app.get('/', (_req, res) => res.json('API Mantencion de Instalaciones'));
 app.use('/api', usuariosRoutes);
 app.use('/api', mantencionesRoutes);
+app.use('/api', correosRoutes);
 
 module.exports = app;
