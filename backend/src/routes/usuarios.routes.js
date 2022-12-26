@@ -3,6 +3,7 @@ const permit = require('../middlewares/auth');
 const {
   createUsuarios,
   getUsuarios,
+  getUsuariosAlt,
   getUsuarioById,
   updateUsuarioById,
   deleteUsuarioById
@@ -13,6 +14,8 @@ const router = Router();
 router.route('/usuarios')
   .get(permit('administrador', 'residente'), getUsuarios)
   .post(permit('administrador'), createUsuarios);
+
+router.get('/usuarios-alt', getUsuariosAlt);
 
 router.route('/usuario/:id')
   .get(permit('administrador', 'residente'), getUsuarioById)

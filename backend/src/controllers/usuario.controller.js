@@ -29,6 +29,18 @@ const getUsuarios = async (_req, res) => {
   }
 };
 
+const getUsuariosAlt = async (_req, res) => {
+  try {
+    const usuarios = await Usuario.find().select('nombre rol');
+
+    return res.json(usuarios);
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
 const getUsuarioById = async (req, res) => {
   try {
     const usuario = await Usuario.findById(req.params.id);
@@ -98,6 +110,7 @@ const deleteUsuarioById = async (req, res) => {
 module.exports = {
   createUsuarios,
   getUsuarios,
+  getUsuariosAlt,
   getUsuarioById,
   updateUsuarioById,
   deleteUsuarioById

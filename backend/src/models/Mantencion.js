@@ -20,8 +20,7 @@ const mantencionSchema = new mongoose.Schema({
     required: true
   },
   fecha_termino: {
-    type: Date,
-    required: true
+    type: Date
   },
   imagen_antes: {
     type: String,
