@@ -6,8 +6,6 @@ function permit(...rolesPermitidos) {
   return async (req, res, next) => {
     try {
       const usuario = await Usuario.findById(req.headers['authenticated-user']);
-      // const usuario = await Usuario.findById(req.query.sesion);
-      // const usuario = await Usuario.findById(req.body.usuarioId);
   
       if (!usuario || !rolesPermitidos.includes(usuario.rol)) {
         if (req.files.imagen_antes) {
