@@ -91,13 +91,12 @@ export default function CorreoPage() {
         
           <SimpleGrid columns={[1, 2]} spacing="10">
             <Box>
-              <Heading size="md">Asunto</Heading>
-              <Text mb="4">{correo.asunto}</Text>
-              <Heading size="md">Fecha</Heading>
-              <Text mb="4">{correo.createdAt}</Text>
-              <Heading size="md">Destinatarios</Heading>
-              <Text mb="4">{correo.userEmails}</Text>
-              <Heading size="md">descripcion</Heading>
+            
+              <Heading size="sm">Fecha</Heading>
+              <Text mb="1">{(new Date(correo.createdAt)).toLocaleString('es')}</Text>
+              <Heading size="sm">Destinatarios</Heading>
+              <Text mb="50">{'['+correo.userEmails+'] '}</Text>
+              <Heading size="md">Descripción</Heading>
               <Text mb="4">{correo.descripcion}</Text>            
             </Box>
             
@@ -108,7 +107,7 @@ export default function CorreoPage() {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Eliminar Correo con ID: {!cargando && correo._id}</ModalHeader>
+          <ModalHeader>Eliminar Correo : {!cargando && correo.asunto}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             ¿Está seguro(a) que desea eliminar el registro "{!cargando && correo.descripcion}"?

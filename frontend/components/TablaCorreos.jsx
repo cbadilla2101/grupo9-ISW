@@ -74,7 +74,7 @@ export default function TablaCorreos({ usuario, correos }) {
                 
                   <HStack>
                     <NextLink href={`./correo/${correo._id}`}>
-                      <Button Button leftIcon={<ViewIcon />} colorScheme="blue">Ver</Button>
+                      <Button leftIcon={<ViewIcon />} colorScheme="blue">Ver</Button>
                     </NextLink>
                     {usuario.rol === 'administrador' && (
                       <>
