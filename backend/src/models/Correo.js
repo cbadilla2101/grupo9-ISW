@@ -30,6 +30,8 @@ const correoSchema = new mongoose.Schema({
     minLenght: 1,
     maxLenght: 500
   }
+}, {
+  timestamps: true
 });
 
 module.exports = mongoose.model('Correo', correoSchema);

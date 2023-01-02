@@ -11,8 +11,13 @@ const sendCorreo = async (req, res, next) => {
     const email_pass = process.env.EMAIL_PW;
 
     if (!email_pass) {
-      return res.status(400).send({
+      return res.status(500).send({
         message: "No se ha entregado la contraseña de aplicación para el correo"
+      });
+    }
+    if (!userEmails || userEmails.length === 0) {
+      return res.status(500).send({
+        message: "No se han entregado los correos de destino"
       });
     }
 
@@ -28,7 +33,7 @@ const sendCorreo = async (req, res, next) => {
 
     const mailOptions = {
       from: email,
-      to: userEmails,
+      to: userEmails.toString(),
       subject: asunto,
       text: descripcion
     };
@@ -37,7 +42,7 @@ const sendCorreo = async (req, res, next) => {
 
     next();
   } catch (error) {
-    return res.status(400).send({
+    return res.status(500).send({
       message: error.message
     });
   }

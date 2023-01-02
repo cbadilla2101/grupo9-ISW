@@ -23,8 +23,9 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 
 const Links = [
-  { name: 'Mantenciones', href: '/dashboard/mantenciones' },
-  { name: 'Correos', href: '/dashboard/correos' },
+  { name: 'Mantenciones', href: '/dashboard/mantenciones', permit: ['administrador', 'residente'] },
+  { name: 'Correos', href: '/dashboard/correos', permit: ['administrador', 'residente'] },
+  { name: 'Enviar Correo', href: '/dashboard/enviarCorreo', permit: ['administrador'] },
 ]
 
 const NavLink = ({ children, href }) => (
@@ -47,7 +48,7 @@ export default function Layout({ children, title }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [usuario, setUsuario] = useState({})
   const [cargando, setCargando] = useState(true)
-  
+
   useEffect(() => {
     const usuarioAuth = JSON.parse(localStorage.getItem('usuarioAuth'))
     if (!usuarioAuth) {
@@ -85,8 +86,10 @@ export default function Layout({ children, title }) {
               as="nav"
               spacing="4"
               display={{ base: 'none', md: 'flex' }}>
-              {Links.map((link) => (
-                <NavLink key={link.name} href={link.href}>{link.name}</NavLink>
+              {!cargando && Links.map((link) => (
+                link.permit.some(rol => rol === usuario.rol) && (
+                  <NavLink key={link.name} href={link.href}>{link.name}</NavLink>
+                )
               ))}
             </HStack>
           </HStack>
@@ -98,11 +101,13 @@ export default function Layout({ children, title }) {
                 variant="link"
                 cursor="pointer"
                 minW="0">
-                <HStack>
-                  <Avatar size="sm" />
+                <HStack color="gray.100">
+                  <Avatar size="sm" bg="black" />
                   <VStack spacing="1px" ml="2" alignItems="flex-start">
-                    <Text fontSize="sm">{!cargando && usuario.nombre.toUpperCase()}</Text>
-                    <Text fontSize="xs" color="gray.600">
+                    <Text fontSize="sm">
+                      {!cargando && usuario.nombre.toUpperCase()}
+                    </Text>
+                    <Text fontSize="xs">
                       {!cargando && usuario.rol[0].toUpperCase() + usuario.rol.slice(1)}
                     </Text>
                   </VStack>
