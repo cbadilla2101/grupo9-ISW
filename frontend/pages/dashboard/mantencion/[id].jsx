@@ -111,9 +111,9 @@ export default function MantencionPage() {
               <Heading size="md">Estado</Heading>
               <Text mb="4">{mantencion.estado.toUpperCase()}</Text>
               <Heading size="md">Fecha Inicio</Heading>
-              <Text mb="4">{mantencion.fecha_inicio}</Text>
+              <Text mb="4">{(new Date(mantencion.fecha_inicio)).toLocaleString('es')}</Text>
               <Heading size="md">Fecha Término</Heading>
-              <Text mb="4">{mantencion.fecha_termino}</Text>
+              <Text mb="4">{(new Date(mantencion.fecha_termino)).toLocaleString('es')}</Text>
               <Heading size="md">Es Rutinaria</Heading>
               <Text mb="4">{mantencion.rutinaria ? 'SÍ' : 'NO'}</Text>
             </Box>
