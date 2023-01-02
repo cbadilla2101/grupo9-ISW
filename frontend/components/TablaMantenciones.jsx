@@ -20,6 +20,7 @@ import {
   ModalCloseButton,
   useToast,
 } from '@chakra-ui/react'
+import { ViewIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { deleteMantencionById } from '../services/mantenciones'
 
 export default function TablaMantenciones({ usuario, mantenciones }) {
@@ -70,14 +71,14 @@ export default function TablaMantenciones({ usuario, mantenciones }) {
                 <Td>
                   <HStack>
                     <NextLink href={`./mantencion/${mantencion._id}`}>
-                      <Button colorScheme="blue">Ver</Button>
+                      <Button leftIcon={<ViewIcon />} colorScheme="blue">Ver</Button>
                     </NextLink>
                     {usuario && usuario.rol === 'administrador' && (
                       <>
                         <NextLink href={`./mantencion/editar/${mantencion._id}`}>
-                          <Button colorScheme="blue">Editar</Button>
+                          <Button leftIcon={<EditIcon />} colorScheme="blue">Editar</Button>
                         </NextLink>
-                        <Button colorScheme="red" onClick={() => {
+                        <Button leftIcon={<DeleteIcon />} colorScheme="red" onClick={() => {
                           setMantEliminar(mantencion)
                           onOpen()
                         }}>

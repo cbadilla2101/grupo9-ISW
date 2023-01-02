@@ -20,6 +20,7 @@ import {
   NumberDecrementStepper,
   useToast,
 } from '@chakra-ui/react'
+import { DeleteIcon } from '@chakra-ui/icons'
 import Layout from '../../../../components/Layout'
 import InputFile from '../../../../components/InputFile'
 import { updateMantencionById } from '../../../../services/mantenciones'
@@ -189,6 +190,7 @@ export default function MantencionPage() {
                   name="fecha_termino"
                   value={mantencion.fecha_termino}
                   onChange={handleChange}
+                  min={mantencion?.fecha_inicio}
                 />
               </FormControl>
               <FormControl mb="4" isRequired>
@@ -218,7 +220,7 @@ export default function MantencionPage() {
                   onChange={handleChange}
                 />
                 {mantencion.imagen_antes_act && (
-                  <Button colorScheme="red" mt="4" onClick={() => {
+                  <Button leftIcon={<DeleteIcon />} colorScheme="red" mt="4" onClick={() => {
                     setMantencion({
                       ...mantencion,
                       imagen_antes: null,
@@ -251,7 +253,7 @@ export default function MantencionPage() {
                   onChange={handleChange}
                 />
                 {mantencion.imagen_despues_act && (
-                  <Button colorScheme="red" mt="4" onClick={() => {
+                  <Button leftIcon={<DeleteIcon />} colorScheme="red" mt="4" onClick={() => {
                     setMantencion({
                       ...mantencion,
                       imagen_despues: null,

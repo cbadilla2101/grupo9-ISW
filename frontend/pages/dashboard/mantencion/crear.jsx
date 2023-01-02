@@ -151,6 +151,7 @@ export default function MantencionPage() {
                 placeholder="Fecha Término"
                 name="fecha_termino"
                 onChange={handleChange}
+                min={mantencion?.fecha_inicio}
               />
             </FormControl>
             <FormControl mb="4" isRequired>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import NextLink from 'next/link'
 import { Button, Flex, Heading, Spacer, Text, useToast } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
 import Layout from '../../components/Layout'
 import { getMantenciones } from '../../services/mantenciones'
 import TablaMantenciones from '../../components/TablaMantenciones'
@@ -35,7 +36,7 @@ export default function MantencionesPage() {
         <Spacer />
         {usuario && usuario.rol === 'administrador' && (
           <NextLink href={'/dashboard/mantencion/crear'}>
-            <Button colorScheme="blue">
+            <Button leftIcon={<AddIcon />} colorScheme="blue">
               Crear Registro
             </Button>
           </NextLink>

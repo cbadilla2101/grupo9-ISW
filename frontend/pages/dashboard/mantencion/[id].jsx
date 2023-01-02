@@ -20,6 +20,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import Layout from '../../../components/Layout'
 import { getMantencionById } from '../../../services/mantenciones'
 import { deleteMantencionById } from '../../../services/mantenciones'
@@ -82,11 +83,11 @@ export default function MantencionPage() {
         {!cargando && usuario.rol === 'administrador' && (
           <>
             <NextLink href={`/dashboard/mantencion/editar/${mantencion._id}`}>
-              <Button colorScheme="blue">
+              <Button leftIcon={<EditIcon />} colorScheme="blue">
                 Editar Registro
               </Button>
             </NextLink>
-            <Button colorScheme="red" ml="4" onClick={onOpen}>
+            <Button leftIcon={<DeleteIcon />} colorScheme="red" ml="4" onClick={onOpen}>
               Eliminar Registro
             </Button>
           </>
