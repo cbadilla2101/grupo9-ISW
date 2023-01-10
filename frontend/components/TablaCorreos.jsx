@@ -33,7 +33,7 @@ export default function TablaCorreos({ usuario, correos }) {
       await deleteCorreoById(usuario._id, corrEliminar._id)
 
       toast({
-        title: 'Correo eliminada correctamente.',
+        title: 'Correo eliminado correctamente.',
         status: 'success',
         isClosable: true,
       })
@@ -55,9 +55,9 @@ export default function TablaCorreos({ usuario, correos }) {
           <Thead>
             <Tr>
               <Th>Asunto</Th>
-              <Th>Descripción</Th>
               <Th>Mantenciones</Th>
               <Th>Fecha</Th>
+              <Th>Hora</Th>
               <Th>Opciones</Th>
             </Tr>
           </Thead>
@@ -65,11 +65,13 @@ export default function TablaCorreos({ usuario, correos }) {
             {correos.map(correo => (
               <Tr key={correo._id}>
                 <Td>{correo.asunto}</Td>
-                <Td>{correo.descripcion}</Td>
                 <Td>{correo.mantencion.map(mantencion => (
-                  <>{'[' + mantencion.descripcion + ']'}<br /></>
+                  <div key={mantencion._id}>
+                    {'[' + mantencion.descripcion + ']'}<br />
+                  </div>
                 ))}</Td>
-                <Td>{(new Date(correo.createdAt)).toLocaleString('es')}</Td>
+                <Td>{(new Date(correo.createdAt)).toLocaleDateString('es')}</Td>
+                <Td>{(new Date(correo.createdAt)).toLocaleTimeString('es')}</Td>
                 <Td>
                 
                   <HStack>
@@ -96,10 +98,10 @@ export default function TablaCorreos({ usuario, correos }) {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Eliminar Registro con ID: {corrEliminar._id}</ModalHeader>
+          <ModalHeader>Eliminar Correo</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            ¿Está seguro(a) que desea eliminar el registro "{corrEliminar.descripcion}"?
+            ¿Está seguro(a) que desea eliminar el correo "{corrEliminar.asunto}"?
           </ModalBody>
 
           <ModalFooter>

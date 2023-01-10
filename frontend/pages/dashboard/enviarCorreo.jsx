@@ -124,7 +124,7 @@ export default function EnviarCorreoPage() {
               />
             </FormControl>
             <FormControl mb="4" isRequired>
-              <FormLabel>Descripcion</FormLabel>
+              <FormLabel>Descripción</FormLabel>
               <Textarea
                 type="text"
                 name="descripcion"

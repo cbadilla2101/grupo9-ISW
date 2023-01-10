@@ -7,6 +7,10 @@ export const getCorreos = async (usuarioAuthId) => {
       { headers: { 'Authenticated-User': usuarioAuthId } }
     )
 
+    res.data.sort((a, b) => (
+      new Date(b.createdAt) - new Date(a.createdAt)
+    ))
+
     return res.data
   } catch (error) {
     const newError = new Error(error.response.statusText)
@@ -42,7 +46,6 @@ export const createCorreo = async (usuarioAuthId, correo) => {
 
     return res.data
   } catch (error) {
-    console.log(error)
     const newError = new Error(error.response.statusText)
     newError.status = error.response.status
 
@@ -59,14 +62,9 @@ export const deleteCorreoById = async (usuarioAuthId, id) => {
 
     return res.data
   } catch (error) {
-    console.log(error)
     const newError = new Error(error.response.statusText)
     newError.status = error.response.status
 
     throw newError
   }
 }
-
-
-
-

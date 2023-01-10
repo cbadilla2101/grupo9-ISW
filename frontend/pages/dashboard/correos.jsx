@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Flex, Heading, Spacer, Text, useToast } from '@chakra-ui/react'
+import { Heading, Text, useToast } from '@chakra-ui/react'
 import Layout from '../../components/Layout'
 import { getCorreos } from '../../services/correos'
 import TablaCorreos from '../../components/TablaCorreos'
@@ -30,13 +30,7 @@ export default function CorreosPage() {
 
   return (
     <Layout title="Reg. de correos">
-      <Flex mb="10">
-
-        <Heading>Registros de Correos</Heading>
-        <Spacer />
-
-      </Flex>
-
+      <Heading mb="10">Registros de Notificaciones</Heading>
       {cargando && <Text>Cargando ...</Text>}
       {!cargando && (
         <TablaCorreos
@@ -44,7 +38,6 @@ export default function CorreosPage() {
           correos={correos}
         />
       )}
-
     </Layout>
   )
 }

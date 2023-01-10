@@ -105,37 +105,45 @@ export default function MantencionPage() {
               <Heading size="md">Empresa</Heading>
               <Text mb="4">{mantencion.empresa}</Text>
               <Heading size="md">Costo</Heading>
-              <Text mb="4">{mantencion.costo}</Text>
-            </Box>
-            <Box>
-              <Heading size="md">Estado</Heading>
-              <Text mb="4">{mantencion.estado.toUpperCase()}</Text>
-              <Heading size="md">Fecha Inicio</Heading>
-              <Text mb="4">{(new Date(mantencion.fecha_inicio)).toLocaleString('es')}</Text>
-              <Heading size="md">Fecha Término</Heading>
-              <Text mb="4">{(new Date(mantencion.fecha_termino)).toLocaleString('es')}</Text>
+              <Text mb="4">{'$' +mantencion.costo}</Text>
               <Heading size="md">Es Rutinaria</Heading>
               <Text mb="4">{mantencion.rutinaria ? 'SÍ' : 'NO'}</Text>
+            </Box>
+            <Box>
+              <Heading size="md">Fecha Inicio</Heading>
+              <Text mb="4">{(new Date(mantencion.fecha_inicio)).toLocaleDateString('es')}</Text>
+              <Heading size="md">Hora Inicio</Heading>
+              <Text mb="4">{(new Date(mantencion.fecha_inicio)).toLocaleTimeString('es')}</Text>
+              <Heading size="md">Fecha Término</Heading>
+              <Text mb="4">{(new Date(mantencion.fecha_termino)).toLocaleDateString('es')}</Text>
+              <Heading size="md">Hora Término</Heading>
+              <Text mb="4">{(new Date(mantencion.fecha_termino)).toLocaleTimeString('es')}</Text>
+              <Heading size="md">Estado</Heading>
+              <Text mb="4">{mantencion.estado.toUpperCase()}</Text>
             </Box>
           </SimpleGrid>
           <SimpleGrid columns={[1, null, 2]} spacing="10" my="6" align="center">
             <Box>
-              <Heading size="md">Imagen Antes</Heading>
+              <Heading size="md" mb="4">Imagen Antes</Heading>
               <Image
                 src={
                   mantencion.imagen_antes ?
                     `${process.env.NEXT_PUBLIC_BACKEND_URL}/${mantencion.imagen_antes}` : '#'
                 }
-                alt='Imagen Antes' />
+                maxH="300px"
+                alt="Imagen Antes"
+              />
             </Box>
             <Box>
-              <Heading size="md">Imagen Después</Heading>
+              <Heading size="md" mb="4">Imagen Después</Heading>
               <Image
                 src={
                   mantencion.imagen_despues ?
                     `${process.env.NEXT_PUBLIC_BACKEND_URL}/${mantencion.imagen_despues}` : '#'
                 }
-                alt='Imagen Después' />
+                maxH="300px"
+                alt="Imagen Después"
+              />
             </Box>
           </SimpleGrid>
         </>

@@ -24,8 +24,8 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 
 const Links = [
   { name: 'Mantenciones', href: '/dashboard/mantenciones', permit: ['administrador', 'residente'] },
-  { name: 'Correos', href: '/dashboard/correos', permit: ['administrador', 'residente'] },
-  { name: 'Enviar Correo', href: '/dashboard/enviarCorreo', permit: ['administrador'] },
+  { name: 'Notificaciones', href: '/dashboard/correos', permit: ['administrador', 'residente'] },
+  { name: 'Enviar Notificación', href: '/dashboard/enviarCorreo', permit: ['administrador'] },
 ]
 
 const NavLink = ({ children, href }) => (

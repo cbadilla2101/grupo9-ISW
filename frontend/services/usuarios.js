@@ -15,11 +15,11 @@ export const getUsuariosAlt = async () => {
   }
 }
 
-export const getUsuarioById = async (sesion, id) => {
+export const getUsuarioById = async (usuarioAuthId, id) => {
   try {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/usuario/${id}`,
-      { headers: { 'Authenticated-User': sesion } }
+      { headers: { 'Authenticated-User': usuarioAuthId } }
     )
   
     return res.data

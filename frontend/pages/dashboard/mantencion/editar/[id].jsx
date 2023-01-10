@@ -34,9 +34,25 @@ export default function MantencionPage() {
   const [cargando, setCargando] = useState(true)
 
   const handleChange = e => {
+    let estado = mantencion.estado
+
+    if (e.target.name === 'fecha_inicio') {
+      if (new Date(e.target.value) <= new Date()) {
+        estado = (new Date(mantencion.fecha_termino) <= new Date()) ? 'finalizado' : 'en proceso'
+      } else {
+        estado = 'pendiente'
+      }
+    } else if (e.target.name === 'fecha_termino') {
+      if (new Date(e.target.value) > new Date()) {
+        estado = (new Date(mantencion.fecha_inicio) <= new Date()) ? 'en proceso' : 'pendiente'
+      } else {
+        estado = 'finalizado'
+      }
+    }
     setMantencion({
       ...mantencion,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      estado
     })
   }
 
@@ -78,7 +94,7 @@ export default function MantencionPage() {
             descripcion: mantencion.descripcion,
             instalacion: mantencion.instalacion,
             fecha_inicio: dateFormat(mantencion.fecha_inicio),
-            fecha_termino: dateFormat(mantencion.fecha_termino),
+            fecha_termino: mantencion.fecha_termino && dateFormat(mantencion.fecha_termino),
             imagen_antes: undefined,
             imagen_despues: undefined,
             imagen_antes_act: mantencion.imagen_antes,
@@ -89,8 +105,8 @@ export default function MantencionPage() {
             estado: mantencion.estado
           }))
           .finally(() => setCargando(false))
-          .catch((_error) => {
-            console.log(_error)
+          .catch((error) => {
+            console.error(error)
             toast({
               title: 'Error al obtener los datos. Intentelo más tarde.',
               status: 'error',
@@ -157,22 +173,6 @@ export default function MantencionPage() {
             </Box>
             <Box>
               <FormControl mb="4" isRequired>
-                <FormLabel>Estado</FormLabel>
-                <RadioGroup
-                  name="estado"
-                  value={mantencion.estado}
-                  onChange={value => {
-                    handleChange({ target: { name: 'estado', value } })
-                  }}
-                >
-                  <HStack spacing="24px">
-                    <Radio value="pendiente">Pendiente</Radio>
-                    <Radio value="en proceso">En proceso</Radio>
-                    <Radio value="finalizado">Finalizado</Radio>
-                  </HStack>
-                </RadioGroup>
-              </FormControl>
-              <FormControl mb="4" isRequired>
                 <FormLabel>Fecha Inicio</FormLabel>
                 <Input
                   type="datetime-local"
@@ -192,6 +192,16 @@ export default function MantencionPage() {
                   onChange={handleChange}
                   min={mantencion?.fecha_inicio}
                 />
+              </FormControl>
+              <FormControl mb="4">
+                <FormLabel>Estado</FormLabel>
+                <RadioGroup name="estado" value={mantencion.estado}>
+                  <HStack spacing="24px">
+                    <Radio value="pendiente">Pendiente</Radio>
+                    <Radio value="en proceso">En proceso</Radio>
+                    <Radio value="finalizado">Finalizado</Radio>
+                  </HStack>
+                </RadioGroup>
               </FormControl>
               <FormControl mb="4" isRequired>
                 <FormLabel>Es Rutinaria</FormLabel>
@@ -240,6 +250,7 @@ export default function MantencionPage() {
                     accept="image/*"
                     alt="Imagen Antes"
                     mt="4"
+                    maxH="300px"
                   />
                 )}
               </FormControl>
@@ -273,6 +284,7 @@ export default function MantencionPage() {
                     accept="image/*"
                     alt="Imagen Después"
                     mt="4"
+                    maxH="300px"
                   />
                 )}
               </FormControl>

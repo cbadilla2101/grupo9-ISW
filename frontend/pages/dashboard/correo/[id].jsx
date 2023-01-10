@@ -93,7 +93,9 @@ export default function CorreoPage() {
             <Box>
             
               <Heading size="sm">Fecha</Heading>
-              <Text mb="1">{(new Date(correo.createdAt)).toLocaleString('es')}</Text>
+              <Text mb="1">{(new Date(correo.createdAt)).toLocaleDateString('es')}</Text>
+              <Heading size="sm">Hora</Heading>
+              <Text mb="1">{(new Date(correo.createdAt)).toLocaleTimeString('es')}</Text>
               <Heading size="sm">Destinatarios</Heading>
               <Text mb="50">{'['+correo.userEmails+'] '}</Text>
               <Heading size="md">Descripción</Heading>
@@ -107,10 +109,10 @@ export default function CorreoPage() {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Eliminar Correo : {!cargando && correo.asunto}</ModalHeader>
+          <ModalHeader>Eliminar Correo </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            ¿Está seguro(a) que desea eliminar el registro "{!cargando && correo.descripcion}"?
+            ¿Está seguro(a) que desea eliminar el correo "{!cargando && correo.asunto}"?
           </ModalBody>
 
           <ModalFooter>

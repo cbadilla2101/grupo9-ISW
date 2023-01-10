@@ -6,6 +6,10 @@ export const getMantenciones = async (usuarioAuthId) => {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/mantenciones`,
       { headers: { 'Authenticated-User': usuarioAuthId } }
     )
+
+    res.data.sort((a, b) => (
+      new Date(b.createdAt) - new Date(a.createdAt)
+    ))
   
     return res.data
   } catch (error) {
@@ -48,7 +52,6 @@ export const createMantencion = async (usuarioAuthId, mantencion) => {
   
     return res.data
   } catch (error) {
-    console.log(error)
     const newError = new Error(error.response.statusText)
     newError.status = error.response.status
 
@@ -72,7 +75,6 @@ export const updateMantencionById = async (usuarioAuthId, mantencion) => {
   
     return res.data
   } catch (error) {
-    console.log(error)
     const newError = new Error(error.response.statusText)
     newError.status = error.response.status
 
@@ -89,7 +91,6 @@ export const deleteMantencionById = async (usuarioAuthId, id) => {
   
     return res.data
   } catch (error) {
-    console.log(error)
     const newError = new Error(error.response.statusText)
     newError.status = error.response.status
 

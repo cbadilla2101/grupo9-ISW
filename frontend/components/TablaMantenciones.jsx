@@ -67,7 +67,7 @@ export default function TablaMantenciones({ usuario, mantenciones }) {
                 <Td>{mantencion.descripcion}</Td>
                 <Td>{mantencion.estado.toUpperCase()}</Td>
                 <Td>{mantencion.empresa}</Td>
-                <Td isNumeric>{mantencion.costo}</Td>
+                <Td isNumeric>{'$' + mantencion.costo}</Td>
                 <Td>
                   <HStack>
                     <NextLink href={`./mantencion/${mantencion._id}`}>
